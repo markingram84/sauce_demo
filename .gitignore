@@ -1,5 +1,7 @@
 
 # Playwright
+.todolist.ts
+.env
 node_modules/
 /test-results/
 /playwright-report/
