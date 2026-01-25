@@ -3,7 +3,7 @@ import { BasePageComponent } from "../base.pageComponent";
 
 export default class Login extends BasePageComponent {
     constructor(
-        page: Page, 
+        page: Page,
         locator = page.locator("#login_button_container")) {
         super(locator);
     }
@@ -15,4 +15,7 @@ export default class Login extends BasePageComponent {
     Buttons = {
         Login: this.host.locator('.login-box').locator('#login-button'),
     };
-    }
+    Message = {
+        Error: this.host.locator('.login-box').locator(".error-message-container"),
+    };
+}
