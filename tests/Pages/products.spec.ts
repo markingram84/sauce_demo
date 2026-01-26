@@ -10,8 +10,8 @@ test(`${pageTitle} componenet validation`, async ({ authenticatedPage, ProductsP
     await expect(ProductsPage.Header.SecondaryHeader.Title).toBeVisible();
     await expect(ProductsPage.Header.SecondaryHeader.Filter).toBeVisible();
     await expect(ProductsPage.Products.Tiles.Names).toHaveCount(6);
-    await expect(ProductsPage.Products.Tiles.Names.filter({ hasText: "Sauce Labs Backpack" })).toBeVisible();
-    await expect(ProductsPage.Products.Tiles.Names.filter({ hasText: "Test.allTheThings() T-Shirt (Red)" })).toBeVisible();
+    await expect(ProductsPage.Products.Tiles.Names.first()).toHaveText("Sauce Labs Backpack");
+    await expect(ProductsPage.Products.Tiles.Names.nth(5)).toHaveText("Test.allTheThings() T-Shirt (Red)");
     await expect(ProductsPage.Products.Tiles.Image).toBeVisible();
     await expect(ProductsPage.Products.Tiles.Prices.filter({ hasText: "29.99" })).toBeVisible();
     await expect(ProductsPage.Products.Tiles.AddToCartButtons).toHaveCount(6);
@@ -42,12 +42,12 @@ test(`${pageTitle} Cart Validation`, async ({ authenticatedPage, ProductsPage })
 
 test(`${pageTitle} Filter Validation`, async ({ authenticatedPage, ProductsPage }) => {
     await expect(authenticatedPage.page).toHaveTitle("Swag Labs");
-    await expect(ProductsPage.Products.Tiles.Names.filter({ hasText: "Sauce Labs Backpack" }).first()).toBeVisible();
+    await expect(ProductsPage.Products.Tiles.Names.first()).toHaveText("Sauce Labs Backpack");
     await ProductsPage.Header.SecondaryHeader.Filter.click();
     await expect(ProductsPage.Filter.Component.Entries).toHaveCount(4);
     await ProductsPage.Filter.Component.List.selectOption('Name (Z to A)');
-    await expect(ProductsPage.Products.Tiles.Names.filter({ hasText: "Test.allTheThings() T-Shirt (Red)" }).first()).toBeVisible();
+    await expect(ProductsPage.Products.Tiles.Names.first()).toHaveText("Test.allTheThings() T-Shirt (Red)");
     await ProductsPage.Header.SecondaryHeader.Filter.click();
     await ProductsPage.Filter.Component.List.selectOption('Price (low to high)');
-    await expect(ProductsPage.Products.Tiles.Names.filter({ hasText: "Sauce Labs Onesie" }).first()).toBeVisible();
+    await expect(ProductsPage.Products.Tiles.Names.first()).toHaveText("Sauce Labs Onesie");
 });
