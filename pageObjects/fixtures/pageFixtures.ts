@@ -1,12 +1,14 @@
 import LoginPage from "../pages/loginPage.page.ts";
 import AuthenticatedPage from "../pages/authenticatedPage.page.ts";
 import ProductsPage from "../pages/products.page.ts";
+import YourCartPage from "../pages/yourCart.page.ts";
 import { test as base } from "@playwright/test";
 
 export type PageObjects = {
   loginPage: LoginPage;
   authenticatedPage: AuthenticatedPage;
   ProductsPage: ProductsPage;
+  YourCartPage: YourCartPage;
 };
 
 const baseurl = process.env.BASEURL;
@@ -29,6 +31,11 @@ export const test = base.extend<PageObjects>({
     const productsPage = new ProductsPage(page);
     await productsPage.open();
     await use(productsPage);
+  },
+  YourCartPage: async ({ page }, use) => {
+    const yourCartPage = new YourCartPage(page);
+    await yourCartPage.open();
+    await use(yourCartPage);
   },
 });
 
