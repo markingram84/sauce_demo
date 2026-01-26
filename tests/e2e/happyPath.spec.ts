@@ -1,5 +1,4 @@
 import { test, expect } from '../../pageObjects/fixtures/pageFixtures';
-import Products from '../../pageObjects/components/Products';
 
 test(`Happy Path Test`, async ({ authenticatedPage, ProductsPage }) => {
   await expect(authenticatedPage.page).toHaveTitle("Swag Labs");

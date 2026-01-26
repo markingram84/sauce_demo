@@ -1,5 +1,4 @@
 import { test, expect } from '../../pageObjects/fixtures/pageFixtures';
-import Login from '../../pageObjects/components/Login';
 const pageTitle = 'Login';
 const standarduser = process.env.STANDARDUSER || '';
 const lockedoutuser = process.env.LOCKEDOUTUSER || '';

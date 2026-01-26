@@ -1,5 +1,4 @@
 import { test, expect } from '../../pageObjects/fixtures/pageFixtures';
-import Products from '../../pageObjects/components/Products';
 const pageTitle = 'Products Page';
 
 test(`${pageTitle} componenet validation`, async ({ authenticatedPage, ProductsPage }) => {
