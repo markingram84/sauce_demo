@@ -34,3 +34,13 @@ test(`${pageTitle} Locked Out User Login`, async ({ loginPage }) => {
   await loginPage.login.Buttons.Login.click();
   await expect(loginPage.login.Message.Error).toBeVisible();
 });
+
+test(`${pageTitle} logout validation`, async ({ loginPage }) => {
+  await loginPage.login.Fields.Username.fill(standarduser);
+  await loginPage.login.Fields.Password.fill(password);
+  await loginPage.login.Buttons.Login.click();
+  await expect(loginPage.page).toHaveURL(/.*inventory.html/);
+  //Open Menu
+  //Click Logout
+  //Assert login screen
+});

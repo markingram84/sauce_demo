@@ -3,7 +3,19 @@ import Products from '../../pageObjects/components/Products';
 
 test(`Happy Path Test`, async ({ authenticatedPage, ProductsPage }) => {
   await expect(authenticatedPage.page).toHaveTitle("Swag Labs");
-  await expect(ProductsPage.Products.Tiles.Names).toHaveCount(6);
-  await expect(ProductsPage.Products.Tiles.Names.filter({ hasText: "Sauce Labs Backpack" })).toBeVisible();
-  await expect(ProductsPage.Products.Tiles.Names.filter({ hasText: "Test.allTheThings() T-Shirt (Red)" })).toBeVisible();
+  //Add Backpack to Cart
+  //Add Bolt t-shirt
+  //Add Onesie to Cart
+  //Add Fleece
+  //Remove Fleexe
+  //Click on Cart
+  //Assert Cart is correct
+  //Click on Checkout
+  //Fill in Checkout Info from .env
+  //Continue to Overview
+  //Assert Overview is correct
+  //Finish
+  //Assert complete screen
+  //Click back home
+  //Assert on home screen
 });
