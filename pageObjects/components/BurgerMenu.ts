@@ -13,5 +13,6 @@ export default class BurgerMenu extends BasePageComponent {
         Menu: this.host.locator('.primary_header').locator('.bm-menu-wrap'),
         CloseButton: this.host.locator('.primary_header').locator('.bm-cross-button'),
         Entries: this.host.locator('.primary_header').locator('.bm-item-list'),
+        Logout: this.host.locator('.primary_header').locator('#logout_sidebar_link')
 }
 }
