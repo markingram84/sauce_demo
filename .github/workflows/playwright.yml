@@ -18,7 +18,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test ./tests/pages .tests/e2e
+      run: npx playwright test
       env:
         BASEURL: ${{ vars.BASEURL }}
         STANDARDUSER: ${{ vars.STANDARDUSER }}

@@ -9,9 +9,7 @@ export default class Filter extends BasePageComponent {
     }
 
     Component = {
-        Icon: this.host.locator('.primary_header').locator('#react-burger-menu-btn'),
-        Menu: this.host.locator('.primary_header').locator('.bm-menu-wrap'),
-        CloseButton: this.host.locator('.primary_header').locator('.bm-cross-button'),
-        Entries: this.host.locator('.primary_header').locator('.bm-item-list'),
+        Entries: this.host.locator('.header_secondary_container').locator('.product_sort_container').locator('option'),
+        List: this.host.locator('.header_secondary_container').locator('.product_sort_container'),
 }
 }
