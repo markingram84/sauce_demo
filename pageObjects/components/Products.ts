@@ -10,5 +10,9 @@ export default class Products extends BasePageComponent {
 
     Tiles = {
         Names: this.host.locator('.inventory_item').locator('.inventory_item_label'),
+        Image: this.host.locator('.inventory_item').getByRole('img', { name: 'Sauce Labs Backpack' }),
+        Prices: this.host.locator('.inventory_item').locator('.inventory_item_price'),
+        AddToCartButtons: this.host.locator('.inventory_item').locator('button.btn_inventory'),
+        Description: this.host.locator('.inventory_item').locator('.inventory_item_desc'),
     };
 }
