@@ -4,7 +4,7 @@ import ProductsPage from "../pages/products.page.ts";
 import YourCartPage from "../pages/yourCart.page.ts";
 import CustomerDetailsPage from "../pages/customerDetails.page.ts";
 import CheckoutOverviewPage from "../pages/checkoutOverview.page.ts";
-import OverviewPage from "../components/Overview.ts";
+import OverviewPage from "../pages/overview.page.ts";
 import { test as base } from "@playwright/test";
 
 export type PageObjects = {

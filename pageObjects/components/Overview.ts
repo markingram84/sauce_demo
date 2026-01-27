@@ -13,6 +13,6 @@ export default class Overview extends BasePageComponent {
         Complete: this.host.locator('.complete-text'),
     }
     Buttons = {
-        BackHome: this.host.locator('.back-to-products'),
+        BackHome: this.host.locator('#back-to-products'),
     }
 }
