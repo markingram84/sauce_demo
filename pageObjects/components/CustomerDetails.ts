@@ -1,6 +1,12 @@
 import { type Locator, type Page } from "@playwright/test";
 import { BasePageComponent } from "../base.pageComponent";
 
+interface CustomerData {
+  firstName: string;
+  lastName: string;
+  zipCode: string;
+}
+
 export default class CustomerDetails extends BasePageComponent {
     constructor(
         page: Page,
@@ -16,4 +22,11 @@ export default class CustomerDetails extends BasePageComponent {
     Buttons = {
         Continue: this.host.locator('.checkout_buttons').locator('#continue'),
     }
+
+async fillInformation(data: CustomerData): Promise<void> {
+  await this.Fields.FirstName.fill(data.firstName);
+  await this.Fields.LastName.fill(data.lastName);
+  await this.Fields.ZipCode.fill(data.zipCode);
+}    
+
 }
