@@ -2,6 +2,9 @@ import LoginPage from "../pages/loginPage.page.ts";
 import AuthenticatedPage from "../pages/authenticatedPage.page.ts";
 import ProductsPage from "../pages/products.page.ts";
 import YourCartPage from "../pages/yourCart.page.ts";
+import CustomerDetailsPage from "../pages/customerDetails.page.ts";
+import CheckoutOverviewPage from "../pages/checkoutOverview.page.ts";
+import OverviewPage from "../components/Overview.ts";
 import { test as base } from "@playwright/test";
 
 export type PageObjects = {
@@ -9,6 +12,9 @@ export type PageObjects = {
   authenticatedPage: AuthenticatedPage;
   ProductsPage: ProductsPage;
   YourCartPage: YourCartPage;
+  CustomerDetailsPage: CustomerDetailsPage;
+  CheckoutOverviewPage: CheckoutOverviewPage;
+  OverviewPage: OverviewPage;
 };
 
 const baseurl = process.env.BASEURL;
@@ -37,6 +43,21 @@ export const test = base.extend<PageObjects>({
     await yourCartPage.open();
     await use(yourCartPage);
   },
+  CustomerDetailsPage: async ({ page }, use) => {
+    const customerDetailsPage = new CustomerDetailsPage(page);
+    await customerDetailsPage.open();
+    await use(customerDetailsPage);
+  },
+  CheckoutOverviewPage: async ({ page }, use) => {
+    const checkoutOverviewPage = new CheckoutOverviewPage(page);
+    await checkoutOverviewPage.open();
+    await use(checkoutOverviewPage);
+  },
+  OverviewPage: async ({ page }, use) => {
+    const overviewPage = new OverviewPage(page);
+    await overviewPage.open();
+    await use(overviewPage);
+  }
 });
 
 export { expect, Page, Locator, Response } from "@playwright/test";

@@ -1,24 +1,31 @@
 import { test, expect } from '../../pageObjects/fixtures/pageFixtures';
+const firstname = process.env.FIRSTNAME || '';
+const lastname = process.env.LASTNAME || '';
+const zipcode = process.env.ZIPCODE || '';
 
-test(`Happy Path Test`, async ({ authenticatedPage, ProductsPage, YourCartPage }) => {
+test(`Happy Path Test`, async ({ authenticatedPage, ProductsPage, YourCartPage, CustomerDetailsPage, CheckoutOverviewPage, OverviewPage }) => {
   await expect(authenticatedPage.page).toHaveTitle("Swag Labs");
-  await expect(authenticatedPage.page).toHaveURL(/.*cart.html/);
+  await ProductsPage.open();
   await ProductsPage.Products.Tiles.AddToCartButtons.nth(0).click();
   await ProductsPage.Products.Tiles.AddToCartButtons.nth(2).click();
   await ProductsPage.Products.Tiles.AddToCartButtons.nth(4).click();
   await ProductsPage.Products.Tiles.AddToCartButtons.nth(3).click();
+  await ProductsPage.Products.Tiles.RemoveFromCartButtons.nth(2).click();
   await ProductsPage.Cart.Component.Icon.click();
   await expect(authenticatedPage.page).toHaveURL(/.*cart.html/);
-  await expect(YourCartPage.Basket.Component.Item).toHaveCount(4);
-  //Remove Fleece Jacket
-  //Click on Cart
-  //Assert Cart is correct
-  //Click on Checkout
-  //Fill in Checkout Info from .env
-  //Continue to Overview
-  //Assert Overview is correct
-  //Finish
-  //Assert complete screen
-  //Click back home
-  //Assert on home screen
+  await expect(YourCartPage.Basket.Component.Item).toHaveCount(3);
+  await YourCartPage.Basket.Component.CheckoutButton.click();
+  await expect(authenticatedPage.page).toHaveURL(/.*checkout-step-one.html/);
+  await CustomerDetailsPage.CustomerDetails.Fields.FirstName.fill(firstname);
+  await CustomerDetailsPage.CustomerDetails.Fields.LastName.fill(lastname);
+  await CustomerDetailsPage.CustomerDetails.Fields.ZipCode.fill(zipcode);
+  await CustomerDetailsPage.CustomerDetails.Buttons.Continue.click();
+  await expect(authenticatedPage.page).toHaveURL(/.*checkout-step-two.html/);
+  await expect(CheckoutOverviewPage.CheckoutOverview.Fields.Total).toBeVisible();
+  await expect(CheckoutOverviewPage.CheckoutOverview.Fields.Total).toHaveText(/Total:\s*\$\s*58\.29/);
+  await CheckoutOverviewPage.CheckoutOverview.Buttons.Finish.click();
+  await expect(authenticatedPage.page).toHaveURL(/.*checkout-complete.html/);
+  await expect(OverviewPage.Overview.Fields.Complete).toBeVisible();
+  await OverviewPage.Overview.Buttons.BackHome.click();
+  await expect(authenticatedPage.page).toHaveURL(/.*inventory.html/);
 });
