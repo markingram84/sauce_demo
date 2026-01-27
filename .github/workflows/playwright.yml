@@ -23,6 +23,9 @@ jobs:
         BASEURL: ${{ vars.BASEURL }}
         STANDARDUSER: ${{ vars.STANDARDUSER }}
         LOCKEDOUTUSER: ${{ vars.LOCKEDOUTUSER }}
+        FIRSTNAME: ${{ vars.FIRSTNAME }}
+        LASTNAME: ${{ vars.LASTNAME }}
+        ZIPCODE: ${{ vars.ZIPCODE }}
         PASSWORD: ${{ secrets.PASSWORD }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
