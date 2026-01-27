@@ -16,4 +16,16 @@ export default class Products extends BasePageComponent {
         RemoveFromCartButtons: this.host.locator('.inventory_item').locator('button.btn_inventory').filter({ hasText: 'Remove' }),
         Description: this.host.locator('.inventory_item').locator('.inventory_item_desc'),
     };
+
+    async addFirstNItemsToCart(count: number): Promise<void> {
+        for (let i = 0; i < count; i++) {
+            await this.Tiles.AddToCartButtons.nth(i).click();
+        }
+    }
+
+    async removeFirstNItemsFromCart(count: number): Promise<void> {
+        for (let i = 0; i < count; i++) {
+            await this.Tiles.RemoveFromCartButtons.nth(i).click();
+        }
+    }
 }
