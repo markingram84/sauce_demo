@@ -2,9 +2,10 @@ import { test, expect } from '../../pageObjects/fixtures/pageFixtures';
 const firstname = process.env.FIRSTNAME || '';
 const lastname = process.env.LASTNAME || '';
 const zipcode = process.env.ZIPCODE || '';
+const appTitle = process.env.APPTITLE || '';
 
 test(`Happy Path Test`, async ({ authenticatedPage, ProductsPage, YourCartPage, CustomerDetailsPage, CheckoutOverviewPage, OverviewPage }) => {
-  await expect(authenticatedPage.page).toHaveTitle("Swag Labs");
+  await expect(authenticatedPage.page).toHaveTitle(appTitle);
   await ProductsPage.open();
   await ProductsPage.Products.addFirstNItemsToCart(4);
   await ProductsPage.Products.removeFirstNItemsFromCart(1);

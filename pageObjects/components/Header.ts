@@ -10,7 +10,7 @@ export default class Header extends BasePageComponent {
 
     PrimaryHeader = {
         BurgerMenu: this.host.locator('.primary_header').locator('#react-burger-menu-btn'),
-        Title: this.host.locator('.primary_header').locator('.header_label'),
+        Title: this.host.locator('.primary_header').locator('.app_logo'),
         Cart: this.host.locator('.primary_header').locator('.shopping_cart_container'),
     };
     SecondaryHeader = {
