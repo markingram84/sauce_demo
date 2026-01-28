@@ -12,7 +12,7 @@ pagesToTest.forEach((url) => {
         await page.goto(url);
         const accessibilityScanResults = await new AxeBuilder({ page })
             .exclude("")
-            .withTags(["wcag22aa", "wcag22a", "wcag22aaa"])
+            .withTags(["wcag2a", "wcag2aa", "wcag2aaa", "wcag21a", "wcag21aa", "wcag21aaa"])
             .analyze();
 
         createHtmlReport({
