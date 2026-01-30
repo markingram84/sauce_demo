@@ -20,7 +20,7 @@ test(`${pageTitle} componenet validation`, async ({ authenticatedPage, ProductsP
     await expect(ProductsPage.Products.Tiles.Names.first()).not.toBeEmpty();
     await expect(ProductsPage.Products.Tiles.Names.nth(5)).not.toBeEmpty();
     await expect(ProductsPage.Products.Tiles.Image).toBeVisible();
-    await expect(ProductsPage.Products.Tiles.Prices.first()).toHaveText(/\d+\.\d{2}/);  
+    await expect(ProductsPage.Products.Tiles.Prices.first()).toHaveText(/\d+\.\d{2}/);
     await expect(ProductsPage.Products.Tiles.AddToCartButtons).toHaveCount(6);
     await expect(ProductsPage.Products.Tiles.Description).toHaveCount(6);
     await expect(ProductsPage.Products.Tiles.Description.first()).not.toBeEmpty();
@@ -47,14 +47,15 @@ test(`${pageTitle} Cart Validation`, async ({ authenticatedPage, ProductsPage })
     await expect(authenticatedPage.page).toHaveURL(/.*inventory.html/);
 });
 
-test(`${pageTitle} Filter Validation`, async ({ authenticatedPage, ProductsPage }) => {
+test(`${pageTitle} Filter Validation new`, async ({ authenticatedPage, ProductsPage }) => {
     await expect(authenticatedPage.page).toHaveTitle(appTitle);
-    await expect(ProductsPage.Products.Tiles.Names.first()).toHaveText("Sauce Labs Backpack");
+    const expectedZA = await ProductsPage.Products.getExpectedZANames();
+    const expectedLowToHigh = await ProductsPage.Products.getExpectedLowToHighPrices();
     await ProductsPage.Header.SecondaryHeader.Filter.click();
-    await expect(ProductsPage.Filter.Component.Entries).toHaveCount(4);
-    await ProductsPage.Filter.Component.List.selectOption('Name (Z to A)');
-    await expect(ProductsPage.Products.Tiles.Names.first()).toHaveText("Test.allTheThings() T-Shirt (Red)");
-    await ProductsPage.Header.SecondaryHeader.Filter.click();
-    await ProductsPage.Filter.Component.List.selectOption('Price (low to high)');
-    await expect(ProductsPage.Products.Tiles.Names.first()).toHaveText("Sauce Labs Onesie");
+    await ProductsPage.Filter.Component.List.selectOption('za');
+    const currentNamesZA = await ProductsPage.Products.Tiles.Names.allTextContents();
+    expect(currentNamesZA).toEqual(expectedZA);
+    await ProductsPage.Filter.Component.List.selectOption('lohi');
+    const currentPricesLowHigh = await ProductsPage.Products.Tiles.Prices.allTextContents();
+    expect(currentPricesLowHigh).toEqual(expectedLowToHigh);
 });
