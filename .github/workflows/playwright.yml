@@ -28,6 +28,7 @@ jobs:
         FIRSTNAME: ${{ vars.FIRSTNAME }}
         LASTNAME: ${{ vars.LASTNAME }}
         ZIPCODE: ${{ vars.ZIPCODE }}
+        APPTITLE: ${{ vars.APPTITLE }}
         PASSWORD: ${{ secrets.PASSWORD }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
