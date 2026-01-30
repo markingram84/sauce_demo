@@ -17,6 +17,18 @@ export default class Products extends BasePageComponent {
         Description: this.host.locator('.inventory_item').locator('.inventory_item_desc'),
     };
 
+    async getExpectedZANames(): Promise<string[]> {
+        const names = await this.Tiles.Names.allTextContents();
+        return [...names].sort().reverse();
+    }
+
+    async getExpectedLowToHighPrices(): Promise<string[]> {
+        const prices = await this.Tiles.Prices.allTextContents();
+        return [...prices].sort((a, b) =>
+            parseFloat(a.replace('$', '')) - parseFloat(b.replace('$', ''))
+        );
+    }
+
     async addFirstNItemsToCart(count: number): Promise<void> {
         for (let i = 0; i < count; i++) {
             await this.Tiles.AddToCartButtons.nth(i).click();

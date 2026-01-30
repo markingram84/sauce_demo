@@ -3,9 +3,10 @@ const pageTitle = 'Login';
 const standarduser = process.env.STANDARDUSER || '';
 const lockedoutuser = process.env.LOCKEDOUTUSER || '';
 const password = process.env.PASSWORD || '';
+const appTitle = process.env.APPTITLE || '';
 
 test(`${pageTitle} title validation`, async ({ loginPage }) => {
-  await expect(loginPage.page).toHaveTitle("Swag Labs");
+  await expect(loginPage.page).toHaveTitle(appTitle);
 });
 
 test(`${pageTitle} Standard User Login`, async ({ loginPage }) => {
