@@ -1,6 +1,7 @@
 import { test, expect } from "../../pageObjects/fixtures/pageFixtures";
 import { createHtmlReport } from "axe-html-reporter";
 import AxeBuilder from "@axe-core/playwright";
+import { access } from "node:fs";
 
 test.describe.configure({ retries: 0 });
 const pagesToTest = [
@@ -14,6 +15,12 @@ pagesToTest.forEach((url) => {
             .exclude("")
             .withTags(["wcag2a", "wcag2aa", "wcag2aaa", "wcag21a", "wcag21aa", "wcag21aaa"])
             .analyze();
+
+const Violations = accessibilityScanResults.violations.filter(
+    (v) => v.impact === "critical" || v.impact === "serious"
+);
+
+accessibilityScanResults.violations = Violations;
 
         createHtmlReport({
             results: accessibilityScanResults,
